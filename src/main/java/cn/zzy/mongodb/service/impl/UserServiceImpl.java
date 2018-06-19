@@ -9,8 +9,7 @@ import org.springframework.stereotype.Service;
 import cn.zzy.mongodb.dao.UserDao;
 import cn.zzy.mongodb.pojo.User;
 
-
-@Service("userService")
+@Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired

@@ -29,11 +29,10 @@
 		</property>
 	</bean>
 
-    <!-- 用户扫描事务的注解 -->
-	<tx:annotation-driven transaction-manager="transactionManager"/>
-	<context:component-scan base-package="cn.zzy.mongodb.controller" />
 	<context:component-scan base-package="cn.zzy.mongodb.dao.**" />
 	<context:component-scan base-package="cn.zzy.mongodb.service.**" />
+	<context:component-scan base-package="cn.zzy.mongodb.controller" />
+
 	<mvc:annotation-driven/>
 	
 
