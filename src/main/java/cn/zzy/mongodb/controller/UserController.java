@@ -25,8 +25,7 @@ public class UserController {
 	
 	@RequestMapping("/userInfo.html")
 	public String findByUserCode(String userCode,Model model) {
-		userCode= userName;
-		model.addAttribute("user", this.userService.findByUserCode(userCode));
+
 		return "userInfo";
 	}
 	
