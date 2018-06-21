@@ -24,7 +24,7 @@ public interface UserDao {
 
 	boolean removeAll(String collectionName);
 
-	boolean update(Object obj,Update update,String collectionName);
+	boolean update(Query query,Update update,String collectionName);
 
 	boolean updateByKey(Query query, Update update, String collectionName);
 

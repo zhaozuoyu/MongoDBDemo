@@ -89,10 +89,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean update(Object obj, Update update, String collectionName) {
+    public boolean update(Query query, Update update, String collectionName) {
         boolean flag = true;
-        Query query = new Query();
-        query.addCriteria(Criteria.where("_id").is(new ObjectId()));
         try {
             mongoTemplate.updateMulti(query,update,collectionName);
         } catch (Exception e) {

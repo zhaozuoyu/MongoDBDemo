@@ -77,15 +77,32 @@ public class MongoTemplateTest {
 
     @Test
     public void updateTest() {
-        //User user = new User();
-        //user.setId(new ObjectId("5b2a248b8ad51bad3b987cf8"));
-        List<User> users = userDao.findByKey(User.class,Criteria.where("_id").is(new ObjectId("5b2a248b8ad51bad3b987cf8")), "User");
-        User user = users.get(0);
+        Query query = new Query();
+        query.addCriteria(Criteria.where("_id").is(new ObjectId("5b2a248b8ad51bad3b987cf8")));
         Update update = new Update();
         update.set("password","never");
-        //update.addToSet("password","never");
         try {
-            if (userDao.update(user, update, "User"))
+            if (userDao.update(query, update, "User"))
+                log.debug("修改成功！");
+            else
+                log.debug("修改失败！");
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+    }
+
+    @Test
+    public void updateByKeyTest(){
+        Update update = new Update();
+        update.set("password","hehe");   //set方法用于更新一个字段，若字段不存在则添加
+        update.addToSet("passwords","yi");  //addToSet方法用户添加一个数组类型的字段，若数组中含有相同的元素则不向数组中添加
+        update.push("test","嘻嘻嘻嘻");   //push方法用于向一个已有的数组末尾添加一个元素，若元素不存在，则会创建一个新的元素
+        //update.pop("test",);
+        update.pull("","");
+        Query query = new Query();
+        query.addCriteria(Criteria.where("_id").is(new ObjectId("5b2a248b8ad51bad3b987cf8")));
+        try {
+            if (userDao.updateByKey(query, update, "User"))
                 log.debug("修改成功！");
             else
                 log.debug("修改失败！");
